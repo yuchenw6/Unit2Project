@@ -10,9 +10,17 @@ public class Game {
         return num;
     }
 
-    public static boolean check(int checkNum, int firstNum, int secondNum, int thridNum) {
-        boolean
+    public static boolean check(int checkNum, int[] list) {
+        boolean result = false;
+        for (int i = 0; i<3;i++){
+            if (checkNum == list[i]){
+                result = true;
+            }
+        }
+        return result;
+
     }
-
-
+    public static void gamepoint(int gamepoint, int trial){
+        System.out.println("You got " + gamepoint + " out of " + trial + " correct!");
+    }
 }
