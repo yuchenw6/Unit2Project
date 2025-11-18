@@ -11,12 +11,12 @@ public class Main {
         int totalPoint = 0;
         boolean playAgain = true;
         int userPlayAgain;
+        System.out.println(numList[0]);
         System.out.println(numList[1]);
         System.out.println(numList[2]);
-        System.out.println(numList[3]);
         while (playAgain){
             System.out.println("Round: " + round + "\n");
-            while (point <= 3 && trial < 5) {
+            while (point < 3 && trial < 5) {
                 System.out.print("Enter your " + (trial+1) + " guess: ");
                 guess = scanner.nextInt();
                 scanner.nextLine();
