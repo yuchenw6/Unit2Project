@@ -20,9 +20,12 @@ public class Game {
         return result;
 
     }
-    public static void gamepoint(int point, int totalPoint, int trial){
+    public static void gamePoint(int point, int totalPoint, int trial, int round){
+        System.out.println("----------------------------------------------");
         System.out.println("Correct Rate: " + point + "/" + trial);
         System.out.println("Point gain this round: " + point);
-        System.out.println("Total point: " + totalPoint + "\n");
+        System.out.println("Total Round Played: " + round);
+        System.out.println("Total point: " + totalPoint);
+        System.out.println("----------------------------------------------" + "\n");
     }
 }

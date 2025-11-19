@@ -9,17 +9,30 @@ public class Main {
         int trial = 0;
         int round = 1;
         int totalPoint = 0;
+        int modeTrial = 5;
         boolean playAgain = true;
         int userPlayAgain;
-        System.out.println(numList[0]);
-        System.out.println(numList[1]);
-        System.out.println(numList[2]);
+        System.out.print("Choose difficulty: 1=Easy, 2=Normal, 3=Hard: ");
+        int mode = scanner.nextInt();
+        while (mode < 0 || mode > 3){
+            System.out.print("Re-enter the mode 0-3: ");
+            mode = scanner.nextInt();
+            scanner.nextLine();
+        }
+        System.out.println("----------------------------------------------" + "\n");
         while (playAgain){
+            modeTrial = (6-mode);
             System.out.println("Round: " + round + "\n");
-            while (point < 3 && trial < 5) {
+            System.out.println("Current Mode: " + mode);
+            while (point < 3 && trial < modeTrial) {
                 System.out.print("Enter your " + (trial+1) + " guess: ");
                 guess = scanner.nextInt();
                 scanner.nextLine();
+                while (guess < 0 || guess > 9){
+                    System.out.print("Re-enter a integer 0-9: ");
+                    guess = scanner.nextInt();
+                    scanner.nextLine();
+                }
                 if (Game.check(guess, numList)) {
                     System.out.print("Correct, ");
                     point++;
@@ -27,11 +40,11 @@ public class Main {
                 } else {
                     System.out.print("Wrong, ");
                 }
-                System.out.println("you still have " + (4 - trial) + " tries" + "\n");
+                System.out.println("you still have " + ((modeTrial-1) - trial) + " tries" + "\n");
                 trial++;
             }
 
-            Game.gamepoint(point, totalPoint, trial);
+            Game.gamePoint(point, totalPoint, trial, round);
             System.out.print("Click 1 to Play Again, 0 to Quit: ");
             userPlayAgain = scanner.nextInt();
             scanner.nextLine();
@@ -41,6 +54,13 @@ public class Main {
                 System.out.println("GAME OVER");
                 totalPoint = 0;
             } else {
+                System.out.print("Enter the mode you want for the new game: ");
+                mode = scanner.nextInt();
+                while (mode < 0 || mode > 3){
+                    System.out.print("Re-enter the mode 0-3: ");
+                    mode = scanner.nextInt();
+                    scanner.nextLine();
+                }
                 point = 0;
                 trial = 0;
                 round++;
