@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Game {
     public static int[] randomNum() {
         int[] num = {0, 0, 0};
@@ -20,8 +22,16 @@ public class Game {
         return result;
 
     }
-    public static void gamePoint(int point, int totalPoint, int trial, int round){
+    public static void gamePoint(int point, int totalPoint, int trial, int round, int[] list, ArrayList<Integer> userNumberList){
+        ArrayList<Integer> correctGuess = new ArrayList<>();
         System.out.println("----------------------------------------------");
+        System.out.print("Your guesses: ");
+        for (int i = 0; i<userNumberList.size(); i++){
+            System.out.print(userNumberList.get(i));
+            System.out.print(" ");
+        }
+        System.out.println();
+        System.out.println("The mystery Number are: " + list[0] + ", " + list[1] + ", " + list[2]);
         System.out.println("Correct Rate: " + point + "/" + trial);
         System.out.println("Point gain this round: " + point);
         System.out.println("Total Round Played: " + round);
