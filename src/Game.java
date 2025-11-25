@@ -38,31 +38,35 @@ public class Game {
         System.out.println("Total point: " + totalPoint);
         System.out.println("----------------------------------------------" + "\n");
     }
-    
+
     public static int getDifficulty(Scanner scanner) {
-    System.out.print("Choose difficulty: \n" + "1 = Easy (7 tries)\n" + "2 = Normal (6 tries)\n" + "3 = Hard (5 Tries)\n" + "Difficulty: ");
+        System.out.print("Choose difficulty: \n" + "1 = Easy (7 tries)\n" + "2 = Normal (6 tries)\n" + "3 = Hard (5 Tries)\n" + "Difficulty: ");
 
-    int mode = scanner.nextInt();
-    scanner.nextLine();
-    while (mode < 1 || mode > 3) {
-        System.out.print("Re-enter the mode 1-3\nDifficulty: ");
-        mode = scanner.nextInt();
+        int mode = scanner.nextInt();
+        scanner.nextLine();
+        while (mode < 1 || mode > 3) {
+            System.out.print("Re-enter the mode 1-3\nDifficulty: ");
+            mode = scanner.nextInt();
+        }
+
+        System.out.println("----------------------------------------------\n");
+
+        return mode;
     }
 
-    System.out.println("----------------------------------------------\n");
-
-    return mode;
-    }
-    
     public static void hint(int guess, int[] list) {
         boolean hasHigher = false;
-        boolean hasLower = false; 
+        boolean hasLower = false;
+        int highCount = 0;
+        int lowCount = 0;
 
         for (int i = 0; i<3; i++) {
             if (guess < list[i]) {
                 hasHigher = true;
+                highCount++;
             } else if (guess > list[i]) {
                 hasLower = true;
+                lowCount++;
             }
         }
 
@@ -71,7 +75,8 @@ public class Game {
         } else if (hasLower && !hasHigher) {
             System.out.println("All number are lower than this");
         } else {
-            System.out.println("There are both higher and lower number than this");
+            System.out.print("There are " + highCount + " number above this, ");
+            System.out.println("and " + lowCount + " number below this");
         }
     }
 }

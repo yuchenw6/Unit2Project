@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int guess;
-        int[] numList = Game.randomNum();
+        int[] numList = Game.randomNum( );
         ArrayList<Integer> userNumberList = new ArrayList<>();
         int point = 0;
         int trial = 0;
@@ -15,6 +15,9 @@ public class Main {
         boolean playAgain = true;
         int userPlayAgain;
         int mode;
+
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
         mode = Game.getDifficulty(scanner);
         while (playAgain){
             modeTrial = (8-mode);
@@ -44,13 +47,16 @@ public class Main {
 
             Game.gamePoint(point, totalPoint, trial, round, numList, userNumberList);
             System.out.println();
-            System.out.print("Click any key but 0 to Play Again, 0 to Quit: ");
+            System.out.print("Click any number but 0 to Play Again, 0 to Quit: ");
             userPlayAgain = scanner.nextInt();
             scanner.nextLine();
             System.out.println();
             if (userPlayAgain == 0) {
                 playAgain = false;
                 System.out.println("GAME OVER" + "\n" + "GOOD GAME");
+                System.out.println(name + " won " + totalPoint + " total point in this game");
+                System.out.println("He is ranked #1 in this game");
+                System.out.println();
                 totalPoint = 0;
             } else {
                 mode = Game.getDifficulty(scanner);
