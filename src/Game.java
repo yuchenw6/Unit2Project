@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Scanner;
 public class Game {
     public static int[] randomNum() {
         int[] num = {0, 0, 0};
@@ -37,5 +37,41 @@ public class Game {
         System.out.println("Total Round Played: " + round);
         System.out.println("Total point: " + totalPoint);
         System.out.println("----------------------------------------------" + "\n");
+    }
+    
+    public static int getDifficulty(Scanner scanner) {
+    System.out.print("Choose difficulty: \n" + "1 = Easy (7 tries)\n" + "2 = Normal (6 tries)\n" + "3 = Hard (5 Tries)\n" + "Difficulty: ");
+
+    int mode = scanner.nextInt();
+    scanner.nextLine();
+    while (mode < 1 || mode > 3) {
+        System.out.print("Re-enter the mode 1-3\nDifficulty: ");
+        mode = scanner.nextInt();
+    }
+
+    System.out.println("----------------------------------------------\n");
+
+    return mode;
+    }
+    
+    public static void hint(int guess, int[] list) {
+        boolean hasHigher = false;
+        boolean hasLower = false; 
+
+        for (int i = 0; i<3; i++) {
+            if (guess < list[i]) {
+                hasHigher = true;
+            } else if (guess > list[i]) {
+                hasLower = true;
+            }
+        }
+
+        if (hasHigher && !hasLower) {
+            System.out.println("All number are higher than this");
+        } else if (hasLower && !hasHigher) {
+            System.out.println("All number are lower than this");
+        } else {
+            System.out.println("There are both higher and lower number than this");
+        }
     }
 }
