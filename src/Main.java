@@ -14,14 +14,8 @@ public class Main {
         int modeTrial = 5;
         boolean playAgain = true;
         int userPlayAgain;
-        System.out.print("Choose difficulty: " + "\n" + "1 = Easy (7 tries)" + "\n" + "2 = Normal (6 tries)" + "\n" + "3 = Hard (5 Tries)" + "\n" + "Difficulty: ");
-        int mode = scanner.nextInt();
-        while (mode < 1 || mode > 3){
-            System.out.print("Re-enter the mode 1-3" + "\n" + "Difficulty: ");
-            mode = scanner.nextInt();
-            scanner.nextLine();
-        }
-        System.out.println("----------------------------------------------" + "\n");
+        int mode;
+        mode = Game.getDifficulty(scanner);
         while (playAgain){
             modeTrial = (8-mode);
             System.out.println("Round: " + round + "\n");
@@ -42,6 +36,7 @@ public class Main {
                     totalPoint++;
                 } else {
                     System.out.print("Wrong, ");
+                    Game.hint(guess, numList);
                 }
                 System.out.println("you still have " + ((modeTrial-1) - trial) + " tries" + "\n");
                 trial++;
@@ -58,21 +53,12 @@ public class Main {
                 System.out.println("GAME OVER" + "\n" + "GOOD GAME");
                 totalPoint = 0;
             } else {
-                System.out.print("Enter the mode you want for the new game" + "\n" + "Difficulty: ");
-                mode = scanner.nextInt();
-                while (mode < 0 || mode > 3){
-                    System.out.print("Re-enter the mode 1-3" + "\n" + "Difficulty: ");
-                    mode = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println();
-                }
-                System.out.println("----------------------------------------------" + "\n");
+                mode = Game.getDifficulty(scanner);
                 point = 0;
                 trial = 0;
                 userNumberList.clear();
                 round++;
             }
-
         }
     }
 }
